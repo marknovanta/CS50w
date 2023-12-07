@@ -1,0 +1,55 @@
+#navbar {
+    display: flex;
+    justify-content: right;
+    padding: 15px;
+}
+
+a {
+    padding: 15px;
+    font-size: 20px;
+}
+
+form {
+    margin: 20px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+
+.padding {
+    padding: 5px;
+}
+
+.rounded {
+    border-radius: 25px;
+    padding: 10px;
+    min-width: 500px;
+}
+
+#advSearchButton {
+    background-color: #33A2FF;
+    color: white;
+}
+
+td {
+    padding: 10px;
+}
+
+.margined {
+    margin: 10px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+}
+
+#title {
+    font-family: Verdana, sans-serif;
+    font-size: 50px;
+}
