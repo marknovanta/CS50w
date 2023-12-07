@@ -1,0 +1,74 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <h2 id="header">{{ header }}</h2>
+    {% if user.is_authenticated %}
+        {% if comments == True %}
+            <div class="card padding">
+                <p>New Post</p>
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea class="form-control" name="content" id="content"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Submit" class="btn btn-primary" id="postingBtn">
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        
+        <div class="padding">
+
+                       
+
+            {% for post in posts %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <a href="{% url 'user_page' user=post.user.id %}">{{ post.user }}</a>
+                    </div>
+                    <div class="card-body">
+                        
+                        
+                        <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text">&#128156 {{ post.likes }}</p>
+                        <footer class="blockquote-footer">{{ post.timestamp}}</footer>
+                    </div>
+                    <div class="mb-3 padding">
+                        {% if user.id == post.user.id %}
+
+                        <textarea id="textArea{{ post.id }}" class="form-control mb-3" style="display: none;">{{ post.content }}</textarea>
+                        <button id="saveBtn{{ post.id }}" class="btn btn-primary mb-3" style="display: none;" onclick="editPost({{ post.id }})">Save</button>
+
+                        <button type="button" class="btn btn-primary mb-3" id="editBtn{{ post.id }}" onclick="showEdit({{ post.id }})">Edit</button>
+                        
+                        {% endif %}
+
+                        {% if post.id in likes %}
+                            <button class="btn btn-primary mb-3" id="likeBtn{{ post.id }}" onclick="dislike({{ post.id }})">Dislike</button>
+                        {% else %}
+                            <button class="btn btn-primary mb-3" id="likeBtn{{ post.id }}" onclick="like({{ post.id }})">Like</button>
+                        {% endif %}
+
+                    </div>
+                </div>
+            {% endfor %}
+
+            <hr>
+
+            <div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+                        {% endif %}
+                        {% if posts.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div> 
+
+        </div>
+    {% endif %}
+{% endblock %}
