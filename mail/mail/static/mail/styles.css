@@ -1,0 +1,10 @@
+textarea {
+    min-height: 400px;
+}
+
+.mailDiv {
+    border: 1px solid gray;
+    padding: 21px;
+    margin: 10px;
+    border-radius: 10px;
+}
