@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+                {{ message }}
+            </div>
+        </div>
+    {% else %}
+        <h2>New Listing</h2>
+        <form action="{% url 'new_listing' %}" method="post">
+            <div class="mb-3 col-sm-7">
+                {% csrf_token %}
+                {{ form }}
+            </div>
+            <input type="submit" value="ADD LISTING" class="btn btn-primary">
+        </form>
+    {% endif %}
+{% endblock %}

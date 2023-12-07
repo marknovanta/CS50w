@@ -1,0 +1,42 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for listing in listings %}
+
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        {% if listing.image %}
+                            <img src="{{ listing.image }}" class="img-fluid rounded-start" alt="item image">
+                        {% else %}
+                            <img src="https://www.frosinonecalcio.com/wp-content/uploads/2021/09/default-placeholder.png" class="img-fluid rounded-start" alt="no image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            {% if listing.status == 'open' %}
+                                <span class="badge bg-success">status: {{ listing.status }}</span>
+                            {% elif listing.status == 'auction' %}
+                                <span class="badge bg-warning">status: {{ listing.status }}</span>
+                            {% elif listing.status == 'closed' %}
+                                <span class="badge bg-danger">status: {{ listing.status }}</span>
+                            {% endif %}
+                            <h5 class="card-title">{{ listing.title }}</h5>
+                            <p class="card-text">{{ listing.description }}</p>
+                            <p class="card-text"><small class="text-body-secondary">$ {{ listing.starting_bid | floatformat:2 }}</small></p>
+                            <a href="{% url 'listing' id=listing.id %}" class="btn btn-primary">View Details</a>
+                            <form action="{% url 'unwatch' listing.id %}" method="post">
+                                {% csrf_token %}  
+                                <input type="submit" value="Remove" class="btn btn-danger">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    
+{% endblock %}

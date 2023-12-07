@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+
+    
+    {% for category in categories %}
+        <div class="d-inline-flex p-2">
+            <form action="{% url 'filter' category %}" action="post">
+                <input type="submit" value="{{ category }}" class="btn btn-primary">
+            </form>
+        </div>
+    {% endfor %}
+    
+
+    
+{% endblock %}
