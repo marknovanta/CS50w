@@ -1,0 +1,33 @@
+{% extends "banking/layout.html" %}
+
+{% block body %}
+
+    <h2 class="center-screen">Register</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group mb-3 center-screen">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group mb-3 center-screen">
+            <input class="form-control" type="email" name="email" placeholder="Email Address">
+        </div>
+        <div class="form-group mb-3 center-screen">
+            <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group mb-3 center-screen">
+            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+        <div class="center-screen">
+            <input class="btn btn-primary mb-3" type="submit" value="Register">
+        </div>
+    </form>
+
+    <div class="center-screen">
+        Already have an account? &#160<a href="{% url 'login' %}">Log In here.</a>
+    </div>
+{% endblock %}

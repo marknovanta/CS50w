@@ -1,0 +1,63 @@
+{% extends 'banking/layout.html' %}
+
+{% block body %}
+    <!-- HOME -->
+    <div id="homeDiv" class="padding">
+        <div id="balanceCanva">
+            <div class="center-screen">
+                <div>
+                    <h3 class="nav-link">Welcome</h3>
+                </div>
+            </div>
+            <div>
+                <div class="center-screen">
+                    <h1 id="balanceField"></h1>
+                </div>
+                <div class="center-screen">
+                    <h3 class="nav-link">current balance</h3>
+                </div>
+                <div class="center-screen">
+                    <button id="addCashBtn" class="padding btn btn-primary">Add Cash</button>
+                </div>
+                <div id="addCashForm"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="mb-3">
+            <h3>Transactions</h3>
+        </div>
+        <div id="transactionsList"></div>
+    </div>
+
+
+    <!-- TRANSFER -->
+    <div id="transferDiv" class="padding">
+        <h3 class="mb-3 center-screen">Transfer</h3>
+
+        <form id="transferForm">
+            <input type="hidden" name="sender" value="{{ user }}">
+            <div class="mb-3 center-screen">
+                <select id="avlbReceiver" class="form-control">
+                    <option selected disabled value="">Select a receiver</option>
+                </select>
+            </div>
+            <div class="mb-3 center-screen">
+                <input class="form-control" type="number" step="0.01" name="amount" placeholder="Amount" id="amountSending">
+            </div>
+            <div class="mb-3 center-screen">
+                <input type="button" value="Send" class="btn btn-primary" id="sendMoneyBtn">
+            </div>
+        </form>
+    </div>
+
+    <!-- CONTACTS -->
+    <div id="contactsDiv" class="padding">
+        <h3 class="mb-3 center-screen">Contacts</h3>
+
+        <button id="addContactBtn" class="btn btn-primary mb-3">Add Contact</button>
+        <div id="addContactFormBox"></div>
+        <h5>Contacts List</h5>
+        <div id="contactsList"></div>
+    </div>
+
+{% endblock %}

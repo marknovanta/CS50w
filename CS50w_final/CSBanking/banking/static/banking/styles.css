@@ -1,0 +1,40 @@
+input, select {
+    max-width: 30%;
+}
+
+.padding {
+    padding: 12px;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+body {
+    background-color: white;
+}
+
+#transferDiv, #contactsDiv, #historyDiv, #settingsDiv {
+    display: none;
+}
+
+@keyframes move {
+    0% {
+        left: 0%;
+        position: relative;
+    }
+    100% {
+        position: relative;
+        left: 101%;
+    }
+}
+
+#transferDiv {
+    animation-name: move;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
